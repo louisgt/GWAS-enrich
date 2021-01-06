@@ -6,7 +6,7 @@ mart.snp = useMart(biomart="ENSEMBL_MART_SNP", host="grch37.ensembl.org", path="
                    dataset="hsapiens_snp")
 
 human.homolog = tryCatch(getLDS(attributes=c("chromosome_name","ensembl_gene_id"), filters="ensembl_gene_id",
-values=hdPCA_list$ID, mart=mart.sc, attributesL=c("chromosome_name","hgnc_symbol","ensembl_gene_id"), martL=mart.hs), error=function(cond) { return(c()) } )
+values=hdPCA_list$ID, mart=mart.sc, attributesL=c("chromosome_name","hgnc_symbol","ensembl_gene_id","scerevisiae_homolog_orthology_confidence"), martL=mart.hs), error=function(cond) { return(c()) } )
 
 orf.gwas = as.data.frame(unique(human.homolog$Gene.stable.ID.1))
 homologies = human.homolog[,c(2,4,5)]
